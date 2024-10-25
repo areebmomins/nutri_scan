@@ -55,12 +55,9 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
 
   Widget _buildDropdown() => DropdownButton<TextRecognitionScript>(
         value: _script,
-        icon: const Icon(Icons.arrow_downward),
+        icon: const Icon(Icons.keyboard_arrow_down_rounded),
         style: const TextStyle(color: Colors.blue),
-        underline: Container(
-          height: 2,
-          color: Colors.blue,
-        ),
+        underline: Container(height: 0),
         onChanged: (TextRecognitionScript? script) {
           if (script != null) {
             setState(() {
