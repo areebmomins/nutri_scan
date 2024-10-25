@@ -12,12 +12,15 @@ class RegistrationFlowBloc
   RegistrationFlowScreens _currentScreen = RegistrationFlowScreens.nameScreen;
   String name = '';
   Genders gender = Genders.male;
+  String age = '';
+  Allergies allergy = Allergies.allergiesOne;
 
   RegistrationFlowBloc() : super(Initial()) {
     on<MoveForward>(_moveForward);
     on<MoveBackward>(_moveBackward);
     on<OnRegFinish>(_onRegFinish);
-    on<OnGenderUpdate>(_onGenderUpdate);
+    on<OnGenderUpdated>(_onGenderUpdate);
+    on<OnAllergyUpdated>(_onAllergyUpdate);
   }
 
   void _moveForward(
@@ -52,6 +55,13 @@ class RegistrationFlowBloc
   ) async {
     emit(GenderUpdated(gender));
   }
+
+  void _onAllergyUpdate(
+    RegistrationFlowEvent event,
+    Emitter<RegistrationFlowState> emit,
+  ) async {
+    emit(AllergyUpdated(allergy));
+  }
 }
 
 enum RegistrationFlowScreens {
@@ -64,4 +74,9 @@ enum RegistrationFlowScreens {
 enum Genders {
   male,
   female,
+}
+
+enum Allergies {
+  allergiesOne,
+  allergiesTwo,
 }

@@ -44,7 +44,7 @@ class GenderScreen extends StatelessWidget {
                 underline: Container(height: 0),
                 onChanged: (Genders? value) {
                   bloc.gender = value ?? Genders.male;
-                  bloc.add(OnGenderUpdate());
+                  bloc.add(OnGenderUpdated());
                 },
                 items: Genders.values.map<DropdownMenuItem<Genders>>(
                   (Genders value) {

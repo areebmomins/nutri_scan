@@ -46,8 +46,8 @@ class AgeScreen extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              onChanged: (name) {
-                bloc.name = name;
+              onChanged: (age) {
+                bloc.age = age;
               },
             ),
           ),

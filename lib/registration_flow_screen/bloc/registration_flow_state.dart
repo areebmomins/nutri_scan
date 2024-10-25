@@ -31,3 +31,12 @@ final class GenderUpdated extends RegistrationFlowState {
   @override
   List<Object> get props => [gender];
 }
+
+final class AllergyUpdated extends RegistrationFlowState {
+  final Allergies allergy;
+
+  const AllergyUpdated(this.allergy);
+
+  @override
+  List<Object> get props => [allergy];
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nutri_scan/utils/utils.dart';
 
 import '../bloc/registration_flow_bloc.dart';
 
@@ -13,7 +14,50 @@ class AllergiesScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('Allergies'),
+        const Spacer(),
+        const Padding(
+          padding: EdgeInsets.only(left: 16, top: 24),
+          child: Text(
+            'Are you allergic?',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF432C81),
+            ),
+          ),
+        ),
+        BlocBuilder<RegistrationFlowBloc, RegistrationFlowState>(
+          buildWhen: (previousState, state) {
+            return state is AllergyUpdated;
+          },
+          builder: (context, state) {
+            return Container(
+              padding: const EdgeInsets.only(left: 16, top: 12),
+              child: DropdownButton<Allergies>(
+                value: bloc.allergy,
+                icon: const Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: Color(0xFFA095C1),
+                ),
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(height: 0),
+                onChanged: (Allergies? value) {
+                  bloc.allergy = value ?? Allergies.allergiesOne;
+                  bloc.add(OnAllergyUpdated());
+                },
+                items: Allergies.values.map<DropdownMenuItem<Allergies>>(
+                      (Allergies value) {
+                    return DropdownMenuItem<Allergies>(
+                      value: value,
+                      child: Text(value.name.capitalize()),
+                    );
+                  },
+                ).toList(),
+              ),
+            );
+          },
+        ),
         const Spacer(),
         Row(
           children: [
