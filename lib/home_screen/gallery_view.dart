@@ -8,7 +8,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../utils/utils.dart';
 
-
 class GalleryView extends StatefulWidget {
   GalleryView(
       {Key? key,
@@ -41,52 +40,119 @@ class _GalleryViewState extends State<GalleryView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: _galleryBody());
+    return Scaffold(body: _galleryBody());
   }
 
   Widget _galleryBody() {
-    return ListView(shrinkWrap: true, children: [
-      SizedBox(height: 24),
-      SizedBox(
-        height: 320,
-        width: double.infinity,
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            _image != null
-                ? Image.file(_image!)
-                : const Icon(Icons.image, size: 240, color: Color(0xFFA095C1),),
-          ],
-        ),
-      ),
+    return Column(children: [
+      const Spacer(),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          onPressed: _getImageAsset,
-          child: Text('From Assets'),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: SizedBox(
+          height: 320,
+          width: double.infinity,
+          child: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              _image != null
+                  ? Image.file(_image!)
+                  : const Icon(
+                      Icons.image,
+                      size: 240,
+                      color: Color(0xFFA095C1),
+                    ),
+            ],
+          ),
         ),
       ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          child: Text('From Gallery'),
-          onPressed: () => _getImage(ImageSource.gallery),
-        ),
+      const Spacer(),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFF56428F),
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.attach_file, size: 32),
+                  color: Colors.white,
+                  onPressed: _getImageAsset,
+                  padding: const EdgeInsets.all(16),
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Asset',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF82799D),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFF56428F),
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.image, size: 32),
+                  color: Colors.white,
+                  onPressed: () => _getImage(ImageSource.gallery),
+                  padding: const EdgeInsets.all(16),
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Gallery',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF82799D),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xFF56428F),
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.camera_alt_outlined, size: 32),
+                  color: Colors.white,
+                  onPressed: () => _getImage(ImageSource.camera),
+                  padding: const EdgeInsets.all(16),
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Camera',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF82799D),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        child: ElevatedButton(
-          child: Text('Take a picture'),
-          onPressed: () => _getImage(ImageSource.camera),
-        ),
-      ),
-      if (_image != null)
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-              '${_path == null ? '' : 'Image path: $_path'}\n\n${widget.text ?? ''}'),
-        ),
+      const SizedBox(height: 40),
+      // if (_image != null)
+      //   Padding(
+      //     padding: const EdgeInsets.all(16.0),
+      //     child: Text(
+      //         '${_path == null ? '' : 'Image path: $_path'}\n\n${widget.text ?? ''}'),
+      //   ),
     ]);
   }
 
