@@ -30,14 +30,22 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('NutriScan'),
+        title: const Text(
+          'NutriScan',
+          style: TextStyle(
+            color: Color(0xFF432C81),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: [
           Container(
               child: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: _buildDropdown(),
-              )),
+            padding: const EdgeInsets.only(right: 16),
+            child: _buildDropdown(),
+          )),
         ],
       ),
       body: Stack(children: [
@@ -55,8 +63,15 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
 
   Widget _buildDropdown() => DropdownButton<TextRecognitionScript>(
         value: _script,
-        icon: const Icon(Icons.keyboard_arrow_down_rounded),
-        style: const TextStyle(color: Colors.blue),
+        icon: const Icon(
+          Icons.keyboard_arrow_down_rounded,
+          color: Color(0xFFA095C1),
+        ),
+        style: const TextStyle(
+          color: Color(0xFF56428F),
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
         underline: Container(height: 0),
         onChanged: (TextRecognitionScript? script) {
           if (script != null) {
@@ -68,11 +83,13 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
           }
         },
         items: TextRecognitionScript.values
-            .where((script) => script == TextRecognitionScript.latin || script == TextRecognitionScript.devanagiri)
+            .where((script) =>
+                script == TextRecognitionScript.latin ||
+                script == TextRecognitionScript.devanagiri)
             .map<DropdownMenuItem<TextRecognitionScript>>((script) {
           return DropdownMenuItem<TextRecognitionScript>(
             value: script,
-            child: Text(script.name.capitalize()),
+            child: Text(script.getLanguageName()),
           );
         }).toList(),
       );

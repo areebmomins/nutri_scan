@@ -56,7 +56,7 @@ class _GalleryViewState extends State<GalleryView> {
           children: <Widget>[
             _image != null
                 ? Image.file(_image!)
-                : Icon(Icons.image, size: 240),
+                : const Icon(Icons.image, size: 240, color: Color(0xFFA095C1),),
           ],
         ),
       ),
