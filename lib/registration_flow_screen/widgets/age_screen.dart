@@ -44,7 +44,9 @@ class AgeScreen extends StatelessWidget {
               margin: const EdgeInsets.all(16),
               child: IconButton(
                 onPressed: () {
-                  bloc.add(MoveForward());
+                  bloc.add(
+                    const MoveForward(RegistrationFlowScreens.ageScreen),
+                  );
                 },
                 icon: const Icon(
                   Icons.navigate_next,

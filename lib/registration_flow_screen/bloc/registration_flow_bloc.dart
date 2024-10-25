@@ -10,6 +10,7 @@ part 'registration_flow_state.dart';
 class RegistrationFlowBloc
     extends Bloc<RegistrationFlowEvent, RegistrationFlowState> {
   RegistrationFlowScreens _currentScreen = RegistrationFlowScreens.nameScreen;
+  String name = '';
 
   RegistrationFlowBloc() : super(Initial()) {
     on<MoveForward>(_moveForward);

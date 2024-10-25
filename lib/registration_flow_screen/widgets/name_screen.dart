@@ -13,7 +13,41 @@ class NameScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('Enter your name'),
+        const Spacer(),
+        const Padding(
+          padding: EdgeInsets.only(left: 16, top: 24),
+          child: Text(
+            'What\'s your name',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF432C81),
+            ),
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(left: 16, right: 24, top: 12),
+          child: TextField(
+            keyboardType: TextInputType.name,
+            autofocus: true,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: BorderSide(width: 0.5),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              hintText: 'Rohit, Nikhil etc.',
+              hintStyle: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey,
+              ),
+            ),
+            onChanged: (name) {
+              bloc.name = name;
+            },
+          ),
+        ),
         const Spacer(),
         Row(
           children: [
@@ -26,7 +60,9 @@ class NameScreen extends StatelessWidget {
               margin: const EdgeInsets.all(16),
               child: IconButton(
                 onPressed: () {
-                  bloc.add(MoveForward());
+                  bloc.add(
+                    const MoveForward(RegistrationFlowScreens.nameScreen),
+                  );
                 },
                 icon: const Icon(
                   Icons.navigate_next,

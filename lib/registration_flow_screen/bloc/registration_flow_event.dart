@@ -5,8 +5,12 @@ sealed class RegistrationFlowEvent extends Equatable {
 }
 
 final class MoveForward extends RegistrationFlowEvent {
+  final RegistrationFlowScreens currentScreen;
+
+  const MoveForward(this.currentScreen);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [currentScreen];
 }
 
 final class MoveBackward extends RegistrationFlowEvent {
