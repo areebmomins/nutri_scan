@@ -10,24 +10,53 @@ class AllergiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     late var bloc = context.read<RegistrationFlowBloc>();
 
-    return Container(
-      child: Column(
-        children: [
-          Text('Allergies'),
-          IconButton(
-            onPressed: () {
-              bloc.add(MoveBackward());
-            },
-            icon: Icon(Icons.navigate_before),
-          ),
-          IconButton(
-            onPressed: () {
-              bloc.add(OnRegFinish());
-            },
-            icon: Icon(Icons.navigate_next),
-          ),
-        ],
-      ),
-    );;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text('Allergies'),
+        const Spacer(),
+        Row(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.transparent,
+                shape: BoxShape.circle,
+              ),
+              margin: const EdgeInsets.all(8),
+              child: IconButton(
+                onPressed: () {
+                  bloc.add(MoveBackward());
+                },
+                icon: const Icon(
+                  Icons.navigate_before,
+                  size: 32,
+                  color: Color(0xFF56428F),
+                ),
+                padding: const EdgeInsets.all(12),
+              ),
+            ),
+            const Spacer(),
+            Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFF56428F),
+                shape: BoxShape.circle,
+              ),
+              margin: const EdgeInsets.all(16),
+              child: IconButton(
+                onPressed: () {
+                  bloc.add(OnRegFinish());
+                },
+                icon: const Icon(
+                  Icons.done,
+                  size: 32,
+                  color: Colors.white,
+                ),
+                padding: const EdgeInsets.all(12),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }

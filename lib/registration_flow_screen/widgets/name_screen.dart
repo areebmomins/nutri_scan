@@ -10,18 +10,35 @@ class NameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     late var bloc = context.read<RegistrationFlowBloc>();
 
-    return Container(
-      child: Column(
-        children: [
-          Text('Name'),
-          IconButton(
-            onPressed: () {
-              bloc.add(MoveForward());
-            },
-            icon: Icon(Icons.navigate_next),
-          ),
-        ],
-      ),
-    );;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text('Enter your name'),
+        const Spacer(),
+        Row(
+          children: [
+            const Spacer(),
+            Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFF56428F),
+                shape: BoxShape.circle,
+              ),
+              margin: const EdgeInsets.all(16),
+              child: IconButton(
+                onPressed: () {
+                  bloc.add(MoveForward());
+                },
+                icon: const Icon(
+                  Icons.navigate_next,
+                  size: 32,
+                  color: Colors.white,
+                ),
+                padding: const EdgeInsets.all(12),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
