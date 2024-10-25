@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nutri_scan/home_screen/upload_image_bottom_sheet.dart';
 
 import '../utils/utils.dart';
 
@@ -48,20 +49,28 @@ class _GalleryViewState extends State<GalleryView> {
       const Spacer(),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: SizedBox(
-          height: 320,
-          width: double.infinity,
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              _image != null
-                  ? Image.file(_image!)
-                  : const Icon(
-                      Icons.image,
-                      size: 240,
-                      color: Color(0xFFA095C1),
-                    ),
-            ],
+        child: GestureDetector(
+          onTap: () {
+            showUploadImageBottomSheet(
+              context,
+              () {
+                _getImage(ImageSource.gallery);
+              },
+              () {
+                _getImage(ImageSource.camera);
+              },
+            );
+          },
+          child: SizedBox(
+            height: 320,
+            width: double.infinity,
+            child: _image != null
+                ? Image.file(_image!)
+                : const Icon(
+                    Icons.image,
+                    size: 240,
+                    color: Color(0xFFA095C1),
+                  ),
           ),
         ),
       ),
@@ -69,81 +78,81 @@ class _GalleryViewState extends State<GalleryView> {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF56428F),
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.attach_file, size: 32),
-                  color: Colors.white,
-                  onPressed: _getImageAsset,
-                  padding: const EdgeInsets.all(16),
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Asset',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF82799D),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF56428F),
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.image, size: 32),
-                  color: Colors.white,
-                  onPressed: () => _getImage(ImageSource.gallery),
-                  padding: const EdgeInsets.all(16),
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Gallery',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF82799D),
-                ),
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: Color(0xFF56428F),
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.camera_alt_outlined, size: 32),
-                  color: Colors.white,
-                  onPressed: () => _getImage(ImageSource.camera),
-                  padding: const EdgeInsets.all(16),
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Camera',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF82799D),
-                ),
-              ),
-            ],
-          ),
+          // Column(
+          //   children: [
+          //     Container(
+          //       decoration: const BoxDecoration(
+          //         color: Color(0xFF56428F),
+          //         shape: BoxShape.circle,
+          //       ),
+          //       child: IconButton(
+          //         icon: const Icon(Icons.attach_file, size: 32),
+          //         color: Colors.white,
+          //         onPressed: _getImageAsset,
+          //         padding: const EdgeInsets.all(16),
+          //       ),
+          //     ),
+          //     const SizedBox(height: 8),
+          //     const Text(
+          //       'Asset',
+          //       style: TextStyle(
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w400,
+          //         color: Color(0xFF82799D),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // Column(
+          //   children: [
+          //     Container(
+          //       decoration: const BoxDecoration(
+          //         color: Color(0xFF56428F),
+          //         shape: BoxShape.circle,
+          //       ),
+          //       child: IconButton(
+          //         icon: const Icon(Icons.image, size: 32),
+          //         color: Colors.white,
+          //         onPressed: () => _getImage(ImageSource.gallery),
+          //         padding: const EdgeInsets.all(16),
+          //       ),
+          //     ),
+          //     const SizedBox(height: 8),
+          //     const Text(
+          //       'Gallery',
+          //       style: TextStyle(
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w400,
+          //         color: Color(0xFF82799D),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // Column(
+          //   children: [
+          //     Container(
+          //       decoration: const BoxDecoration(
+          //         color: Color(0xFF56428F),
+          //         shape: BoxShape.circle,
+          //       ),
+          //       child: IconButton(
+          //         icon: const Icon(Icons.camera_alt_outlined, size: 32),
+          //         color: Colors.white,
+          //         onPressed: () => _getImage(ImageSource.camera),
+          //         padding: const EdgeInsets.all(16),
+          //       ),
+          //     ),
+          //     const SizedBox(height: 8),
+          //     const Text(
+          //       'Camera',
+          //       style: TextStyle(
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w400,
+          //         color: Color(0xFF82799D),
+          //       ),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
       const SizedBox(height: 40),

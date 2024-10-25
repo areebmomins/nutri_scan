@@ -41,11 +41,10 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
           ),
         ),
         actions: [
-          Container(
-              child: Padding(
+          Padding(
             padding: const EdgeInsets.only(right: 16),
             child: _buildDropdown(),
-          )),
+          ),
         ],
       ),
       body: Stack(children: [
