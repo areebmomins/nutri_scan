@@ -44,17 +44,6 @@ class _GalleryViewState extends State<GalleryView> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: widget.onDetectorViewModeChanged,
-                child: Icon(
-                  Platform.isIOS ? Icons.camera_alt_outlined : Icons.camera,
-                ),
-              ),
-            ),
-          ],
         ),
         body: _galleryBody());
   }
