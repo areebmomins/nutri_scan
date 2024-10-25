@@ -13,7 +13,45 @@ class AgeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text('Age'),
+        const Spacer(),
+        const Padding(
+          padding: EdgeInsets.only(left: 16, top: 24),
+          child: Text(
+            'What\s your age',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF432C81),
+            ),
+          ),
+        ),
+        Center(
+          child: Container(
+            width: 80,
+            margin: const EdgeInsets.only(top: 12),
+            child: TextField(
+              keyboardType: TextInputType.number,
+              autofocus: true,
+              textAlign: TextAlign.center,
+              maxLength: 3,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(width: 0.5),
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                hintText: '28',
+                hintStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey,
+                ),
+              ),
+              onChanged: (name) {
+                bloc.name = name;
+              },
+            ),
+          ),
+        ),
         const Spacer(),
         Row(
           children: [
