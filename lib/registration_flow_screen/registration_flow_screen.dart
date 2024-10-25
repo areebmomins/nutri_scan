@@ -29,6 +29,9 @@ class RegistrationFlowScreen extends StatelessWidget {
         child: Scaffold(
           body: SafeArea(
             child: BlocBuilder<RegistrationFlowBloc, RegistrationFlowState>(
+              buildWhen: (previousState, state) {
+                return state is UpdateScreen;
+              },
               builder: (context, state) {
                 if (state is UpdateScreen) {
                   if (state.screen == RegistrationFlowScreens.nameScreen) {

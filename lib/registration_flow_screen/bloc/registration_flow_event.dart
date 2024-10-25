@@ -22,3 +22,8 @@ final class OnRegFinish extends RegistrationFlowEvent {
   @override
   List<Object> get props => [];
 }
+
+final class OnGenderUpdate extends RegistrationFlowEvent {
+  @override
+  List<Object> get props => [];
+}

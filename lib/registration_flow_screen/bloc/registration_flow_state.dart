@@ -22,3 +22,12 @@ final class RegFinish extends RegistrationFlowState {
   @override
   List<Object> get props => [];
 }
+
+final class GenderUpdated extends RegistrationFlowState {
+  final Genders gender;
+
+  const GenderUpdated(this.gender);
+
+  @override
+  List<Object> get props => [gender];
+}
