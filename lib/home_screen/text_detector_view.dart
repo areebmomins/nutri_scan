@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:nutri_scan/home_screen/text_detector_painter.dart';
+import 'package:nutri_scan/utils/utils.dart';
 
 import 'detector_view.dart';
 
@@ -29,34 +30,25 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('NutriScan'),
+        actions: [
+          Container(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: _buildDropdown(),
+              )),
+        ],
+      ),
       body: Stack(children: [
         DetectorView(
-          title: 'Text Detector',
+          title: 'NutriScan',
           customPaint: _customPaint,
           text: _text,
           onImage: _processImage,
           initialCameraLensDirection: _cameraLensDirection,
           onCameraLensDirectionChanged: (value) => _cameraLensDirection = value,
         ),
-        Positioned(
-            top: 30,
-            left: 100,
-            right: 100,
-            child: Row(
-              children: [
-                Spacer(),
-                Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: _buildDropdown(),
-                    )),
-                Spacer(),
-              ],
-            )),
       ]),
     );
   }
@@ -64,7 +56,6 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
   Widget _buildDropdown() => DropdownButton<TextRecognitionScript>(
         value: _script,
         icon: const Icon(Icons.arrow_downward),
-        elevation: 16,
         style: const TextStyle(color: Colors.blue),
         underline: Container(
           height: 2,
@@ -80,10 +71,11 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
           }
         },
         items: TextRecognitionScript.values
+            .where((script) => script == TextRecognitionScript.latin || script == TextRecognitionScript.devanagiri)
             .map<DropdownMenuItem<TextRecognitionScript>>((script) {
           return DropdownMenuItem<TextRecognitionScript>(
             value: script,
-            child: Text(script.name),
+            child: Text(script.name.capitalize()),
           );
         }).toList(),
       );

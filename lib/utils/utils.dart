@@ -19,3 +19,9 @@ Future<String> getAssetPath(String asset) async {
 Future<String> getLocalPath(String path) async {
   return '${(await getApplicationSupportDirectory()).path}/$path';
 }
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}

@@ -42,29 +42,24 @@ class _GalleryViewState extends State<GalleryView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
         body: _galleryBody());
   }
 
   Widget _galleryBody() {
     return ListView(shrinkWrap: true, children: [
-      _image != null
-          ? SizedBox(
-              height: 400,
-              width: 400,
-              child: Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  Image.file(_image!),
-                ],
-              ),
-            )
-          : Icon(
-              Icons.image,
-              size: 200,
-            ),
+      SizedBox(height: 24),
+      SizedBox(
+        height: 320,
+        width: double.infinity,
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            _image != null
+                ? Image.file(_image!)
+                : Icon(Icons.image, size: 240),
+          ],
+        ),
+      ),
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: ElevatedButton(
