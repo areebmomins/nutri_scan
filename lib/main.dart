@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nutri_scan/registration_flow_screen/registration_flow_screen.dart';
+
+import 'data/preference/shared_preference.dart';
 import 'home_screen/text_detector_view.dart';
 
-void main() {
+Future<void> main() async {
+  SharedPreference.instance.initPreference();
   runApp(const MyApp());
 }
 
@@ -17,7 +21,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: TextRecognizerView(),
+      home: FutureBuilder(
+        future: SharedPreference.instance.isRegDone(),
+        builder: (BuildContext context, AsyncSnapshot<bool?> snapshot) {
+          if (snapshot.data == true) {
+            return TextRecognizerView();
+          } else {
+            return const RegistrationFlowScreen();
+          }
+        },
+      ),
     );
   }
 }
