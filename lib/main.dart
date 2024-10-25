@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'home_screen/home_screen.dart';
 import 'home_screen/text_detector_view.dart';
 
 void main() {
