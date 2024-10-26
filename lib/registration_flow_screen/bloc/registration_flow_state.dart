@@ -32,11 +32,11 @@ final class GenderUpdated extends RegistrationFlowState {
   List<Object> get props => [gender];
 }
 
-final class AllergyUpdated extends RegistrationFlowState {
-  final Allergies allergy;
+final class DietaryPreferencesUpdated extends RegistrationFlowState {
+  final DietaryPreferences dietaryPreferences;
 
-  const AllergyUpdated(this.allergy);
+  const DietaryPreferencesUpdated(this.dietaryPreferences);
 
   @override
-  List<Object> get props => [allergy];
+  List<Object> get props => [dietaryPreferences];
 }

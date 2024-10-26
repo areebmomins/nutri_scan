@@ -13,14 +13,14 @@ class RegistrationFlowBloc
   String name = '';
   Genders gender = Genders.male;
   String age = '';
-  Allergies allergy = Allergies.allergiesOne;
+  DietaryPreferences dietaryPreferences = DietaryPreferences.ovoVegetarian;
 
   RegistrationFlowBloc() : super(Initial()) {
     on<MoveForward>(_moveForward);
     on<MoveBackward>(_moveBackward);
     on<OnRegFinish>(_onRegFinish);
     on<OnGenderUpdated>(_onGenderUpdate);
-    on<OnAllergyUpdated>(_onAllergyUpdate);
+    on<OnDietaryPreferencesUpdated>(_onDietaryPreferencesUpdate);
   }
 
   void _moveForward(
@@ -56,11 +56,11 @@ class RegistrationFlowBloc
     emit(GenderUpdated(gender));
   }
 
-  void _onAllergyUpdate(
+  void _onDietaryPreferencesUpdate(
     RegistrationFlowEvent event,
     Emitter<RegistrationFlowState> emit,
   ) async {
-    emit(AllergyUpdated(allergy));
+    emit(DietaryPreferencesUpdated(dietaryPreferences));
   }
 }
 
@@ -68,7 +68,7 @@ enum RegistrationFlowScreens {
   nameScreen,
   genderScreen,
   ageScreen,
-  allergiesScreen,
+  dietaryPreferencesScreen,
 }
 
 enum Genders {
@@ -76,7 +76,16 @@ enum Genders {
   female,
 }
 
-enum Allergies {
-  allergiesOne,
-  allergiesTwo,
+enum DietaryPreferences {
+  ovoVegetarian,
+  pescatarian,
+  flexitarian,
+  lactoVegetarian,
+  rawVegan,
+  vegetarianism,
+  kindsOfVegetarians,
+  veganDiet,
+  veganism,
+  macrobiotic,
+  paleotarian,
 }

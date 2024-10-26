@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nutri_scan/registration_flow_screen/widgets/age_screen.dart';
-import 'package:nutri_scan/registration_flow_screen/widgets/allergies_screen.dart';
+import 'package:nutri_scan/registration_flow_screen/widgets/dietary_preferences_screen.dart';
 import 'package:nutri_scan/registration_flow_screen/widgets/gender_screen.dart';
 import 'package:nutri_scan/registration_flow_screen/widgets/name_screen.dart';
 
@@ -43,8 +43,8 @@ class RegistrationFlowScreen extends StatelessWidget {
                       RegistrationFlowScreens.genderScreen) {
                     return const GenderScreen();
                   } else if (state.screen ==
-                      RegistrationFlowScreens.allergiesScreen) {
-                    return const AllergiesScreen();
+                      RegistrationFlowScreens.dietaryPreferencesScreen) {
+                    return const DietaryPreferencesScreen();
                   } else {
                     return const NameScreen();
                   }

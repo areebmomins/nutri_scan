@@ -28,7 +28,7 @@ final class OnGenderUpdated extends RegistrationFlowEvent {
   List<Object> get props => [];
 }
 
-final class OnAllergyUpdated extends RegistrationFlowEvent {
+final class OnDietaryPreferencesUpdated extends RegistrationFlowEvent {
   @override
   List<Object> get props => [];
 }

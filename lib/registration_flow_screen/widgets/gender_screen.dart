@@ -32,28 +32,32 @@ class GenderScreen extends StatelessWidget {
           },
           builder: (context, state) {
             return Container(
-              padding: const EdgeInsets.only(left: 16, top: 12),
-              child: DropdownButton<Genders>(
-                value: bloc.gender,
-                icon: const Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: Color(0xFFA095C1),
-                ),
-                elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(height: 0),
-                onChanged: (Genders? value) {
-                  bloc.gender = value ?? Genders.male;
-                  bloc.add(OnGenderUpdated());
-                },
-                items: Genders.values.map<DropdownMenuItem<Genders>>(
-                  (Genders value) {
-                    return DropdownMenuItem<Genders>(
-                      value: value,
-                      child: Text(value.name.capitalize()),
-                    );
-                  },
-                ).toList(),
+              padding: const EdgeInsets.only(left: 24, top: 12),
+              child: Wrap(
+                children: [
+                  DropdownButton<Genders>(
+                    value: bloc.gender,
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: Color(0xFFA095C1),
+                    ),
+                    elevation: 16,
+                    style: const TextStyle(color: Colors.deepPurple),
+                    underline: Container(height: 0),
+                    onChanged: (Genders? value) {
+                      bloc.gender = value ?? Genders.male;
+                      bloc.add(OnGenderUpdated());
+                    },
+                    items: Genders.values.map<DropdownMenuItem<Genders>>(
+                      (Genders value) {
+                        return DropdownMenuItem<Genders>(
+                          value: value,
+                          child: Text(value.name.capitalize()),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ],
               ),
             );
           },
