@@ -47,16 +47,19 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
           ),
         ],
       ),
-      body: Stack(children: [
-        DetectorView(
-          title: 'NutriScan',
-          customPaint: _customPaint,
-          text: _text,
-          onImage: _processImage,
-          initialCameraLensDirection: _cameraLensDirection,
-          onCameraLensDirectionChanged: (value) => _cameraLensDirection = value,
-        ),
-      ]),
+      body: Column(
+        children: [
+          // Text(data),
+          DetectorView(
+            title: 'NutriScan',
+            customPaint: _customPaint,
+            text: _text,
+            onImage: _processImage,
+            initialCameraLensDirection: _cameraLensDirection,
+            onCameraLensDirectionChanged: (value) => _cameraLensDirection = value,
+          ),
+        ],
+      ),
     );
   }
 
