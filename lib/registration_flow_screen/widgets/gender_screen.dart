@@ -18,7 +18,7 @@ class GenderScreen extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 16, top: 24),
           child: Text(
-            'What\'s your gender',
+            'What\'s your gender?',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w500,
@@ -31,31 +31,40 @@ class GenderScreen extends StatelessWidget {
             return state is GenderUpdated;
           },
           builder: (context, state) {
-            return Container(
-              padding: const EdgeInsets.only(left: 24, top: 12),
+            return Center(
               child: Wrap(
                 children: [
-                  DropdownButton<Genders>(
-                    value: bloc.gender,
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Color(0xFFA095C1),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFA095C1),
+                      ),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(height: 0),
-                    onChanged: (Genders? value) {
-                      bloc.gender = value ?? Genders.male;
-                      bloc.add(OnGenderUpdated());
-                    },
-                    items: Genders.values.map<DropdownMenuItem<Genders>>(
-                      (Genders value) {
-                        return DropdownMenuItem<Genders>(
-                          value: value,
-                          child: Text(value.name.capitalize()),
-                        );
+                    child: DropdownButton<Genders>(
+                      value: bloc.gender,
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: Color(0xFFA095C1),
+                      ),
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(height: 0),
+                      onChanged: (Genders? value) {
+                        bloc.gender = value ?? Genders.male;
+                        bloc.add(OnGenderUpdated());
                       },
-                    ).toList(),
+                      items: Genders.values.map<DropdownMenuItem<Genders>>(
+                        (Genders value) {
+                          return DropdownMenuItem<Genders>(
+                            value: value,
+                            child: Text(value.name.capitalize()),
+                          );
+                        },
+                      ).toList(),
+                    ),
                   ),
                 ],
               ),

@@ -17,7 +17,7 @@ class NameScreen extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 16, top: 24),
           child: Text(
-            'What\'s your name',
+            'What\'s your name?',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w500,
@@ -27,7 +27,7 @@ class NameScreen extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
-          margin: const EdgeInsets.only(left: 16, right: 24, top: 12),
+          margin: const EdgeInsets.only(left: 24, right: 24, top: 12),
           child: TextField(
             keyboardType: TextInputType.name,
             autofocus: true,

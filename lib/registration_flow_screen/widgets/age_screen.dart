@@ -17,7 +17,7 @@ class AgeScreen extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 16, top: 24),
           child: Text(
-            'What\s your age',
+            'What\'s your age?',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w500,

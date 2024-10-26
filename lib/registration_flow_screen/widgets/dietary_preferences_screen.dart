@@ -18,7 +18,7 @@ class DietaryPreferencesScreen extends StatelessWidget {
         const Padding(
           padding: EdgeInsets.only(left: 16, top: 24),
           child: Text(
-            'Are you allergic?',
+            'Dietary Preferences?',
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w500,
