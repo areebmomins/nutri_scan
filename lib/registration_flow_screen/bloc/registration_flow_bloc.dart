@@ -77,15 +77,18 @@ enum Genders {
 }
 
 enum DietaryPreferences {
-  ovoVegetarian,
-  pescatarian,
-  flexitarian,
-  lactoVegetarian,
-  rawVegan,
-  vegetarianism,
-  kindsOfVegetarians,
-  veganDiet,
-  veganism,
-  macrobiotic,
-  paleotarian,
+  ovoVegetarian('Ovo Vegetarian'),
+  pescatarian('Pescatarian'),
+  flexitarian('Flexitarian'),
+  lactoVegetarian('Lacto Vegetarian'),
+  rawVegan('Raw Vegan'),
+  vegetarianism('Vegetarianism'),
+  veganDiet('Vegan Diet'),
+  veganism('Veganism'),
+  macrobiotic('Macrobiotic'),
+  paleotarian('Paleotarian');
+
+  final String title;
+
+  const DietaryPreferences(this.title);
 }

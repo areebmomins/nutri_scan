@@ -31,33 +31,42 @@ class DietaryPreferencesScreen extends StatelessWidget {
             return state is DietaryPreferencesUpdated;
           },
           builder: (context, state) {
-            return Container(
-              padding: const EdgeInsets.only(left: 24, top: 12),
+            return Center(
               child: Wrap(
                 children: [
-                  DropdownButton<DietaryPreferences>(
-                    value: bloc.dietaryPreferences,
-                    icon: const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Color(0xFFA095C1),
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xFFA095C1),
+                      ),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    elevation: 16,
-                    style: const TextStyle(color: Colors.deepPurple),
-                    underline: Container(height: 0),
-                    onChanged: (DietaryPreferences? value) {
-                      bloc.dietaryPreferences =
-                          value ?? DietaryPreferences.ovoVegetarian;
-                      bloc.add(OnDietaryPreferencesUpdated());
-                    },
-                    items: DietaryPreferences.values
-                        .map<DropdownMenuItem<DietaryPreferences>>(
-                      (DietaryPreferences value) {
-                        return DropdownMenuItem<DietaryPreferences>(
-                          value: value,
-                          child: Text(value.name.capitalize()),
-                        );
+                    child: DropdownButton<DietaryPreferences>(
+                      value: bloc.dietaryPreferences,
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: Color(0xFFA095C1),
+                      ),
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.deepPurple),
+                      underline: Container(height: 0),
+                      onChanged: (DietaryPreferences? value) {
+                        bloc.dietaryPreferences =
+                            value ?? DietaryPreferences.ovoVegetarian;
+                        bloc.add(OnDietaryPreferencesUpdated());
                       },
-                    ).toList(),
+                      items: DietaryPreferences.values
+                          .map<DropdownMenuItem<DietaryPreferences>>(
+                        (DietaryPreferences value) {
+                          return DropdownMenuItem<DietaryPreferences>(
+                            value: value,
+                            child: Text(value.title),
+                          );
+                        },
+                      ).toList(),
+                    ),
                   ),
                 ],
               ),

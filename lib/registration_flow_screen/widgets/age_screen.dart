@@ -33,7 +33,7 @@ class AgeScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               autofocus: true,
               textAlign: TextAlign.center,
-              maxLength: 3,
+              maxLength: 2,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide(width: 0.5),
