@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../data/preference/shared_preference.dart';
 import '../bloc/registration_flow_bloc.dart';
 
 class NameScreen extends StatelessWidget {
@@ -63,8 +64,9 @@ class NameScreen extends StatelessWidget {
               ),
               margin: const EdgeInsets.all(16),
               child: IconButton(
-                onPressed: () {
+                onPressed: () async {
                   if (bloc.name.isNotEmpty) {
+                    await SharedPreference.instance.updateName(bloc.name);
                     bloc.add(
                       const MoveForward(RegistrationFlowScreens.nameScreen),
                     );
