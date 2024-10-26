@@ -78,6 +78,24 @@ class _GalleryViewState extends State<GalleryView> {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text(
+              'Help me Decide',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text(
+              'Scan',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+          ),
           // Column(
           //   children: [
           //     Container(

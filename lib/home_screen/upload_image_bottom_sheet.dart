@@ -7,6 +7,7 @@ void showUploadImageBottomSheet(
 ) {
   showModalBottomSheet(
     context: context,
+    backgroundColor: Colors.white,
     builder: (context) {
       return Wrap(
         children: [
