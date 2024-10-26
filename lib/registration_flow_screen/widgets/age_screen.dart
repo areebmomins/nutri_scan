@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../bloc/registration_flow_bloc.dart';
 
@@ -9,6 +10,8 @@ class AgeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late var bloc = context.read<RegistrationFlowBloc>();
+    final TextEditingController controller = TextEditingController();
+    controller.text = bloc.age;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,6 +33,7 @@ class AgeScreen extends StatelessWidget {
             width: 80,
             margin: const EdgeInsets.only(top: 12),
             child: TextField(
+              controller: controller,
               keyboardType: TextInputType.number,
               autofocus: true,
               textAlign: TextAlign.center,
@@ -82,9 +86,13 @@ class AgeScreen extends StatelessWidget {
               margin: const EdgeInsets.all(16),
               child: IconButton(
                 onPressed: () {
-                  bloc.add(
-                    const MoveForward(RegistrationFlowScreens.ageScreen),
-                  );
+                  if (bloc.age.isNotEmpty) {
+                    bloc.add(
+                      const MoveForward(RegistrationFlowScreens.ageScreen),
+                    );
+                  } else {
+                    Fluttertoast.showToast(msg: 'Please enter age');
+                  }
                 },
                 icon: const Icon(
                   Icons.navigate_next,

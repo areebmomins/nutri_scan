@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../bloc/registration_flow_bloc.dart';
 
@@ -9,6 +10,8 @@ class NameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late var bloc = context.read<RegistrationFlowBloc>();
+    final TextEditingController controller = TextEditingController();
+    controller.text = bloc.name;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,6 +32,7 @@ class NameScreen extends StatelessWidget {
           width: double.infinity,
           margin: const EdgeInsets.only(left: 24, right: 24, top: 12),
           child: TextField(
+            controller: controller,
             keyboardType: TextInputType.name,
             autofocus: true,
             decoration: const InputDecoration(
@@ -60,9 +64,13 @@ class NameScreen extends StatelessWidget {
               margin: const EdgeInsets.all(16),
               child: IconButton(
                 onPressed: () {
-                  bloc.add(
-                    const MoveForward(RegistrationFlowScreens.nameScreen),
-                  );
+                  if (bloc.name.isNotEmpty) {
+                    bloc.add(
+                      const MoveForward(RegistrationFlowScreens.nameScreen),
+                    );
+                  } else {
+                    Fluttertoast.showToast(msg: 'Please enter name');
+                  }
                 },
                 icon: const Icon(
                   Icons.navigate_next,
